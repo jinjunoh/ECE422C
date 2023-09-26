@@ -1,0 +1,6 @@
+/* Student Name: Jin Jun Oh, Lab Section: F 1:30-3:00 */
+
+I expect to learn the basics of Java and OOP. I am also excited to learn more about Machine Learning and the
+opportunity to use Andriod Studio to create a mobile application. If we have time at the end of the semester,
+I would also like to learn real life skills that a software engineer would use such as system architecture/design,
+ database management, and software testing.
