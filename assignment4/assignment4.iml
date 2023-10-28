@@ -7,9 +7,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="stanford-postagger-4.2.01" level="project" />
-    <orderEntry type="library" name="assignment1" level="project" />
-    <orderEntry type="library" name="assignment11" level="project" />
-    <orderEntry type="library" name="stanford-postagger-4.2.0" level="project" />
   </component>
 </module>
