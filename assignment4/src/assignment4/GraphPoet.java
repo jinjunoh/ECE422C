@@ -17,19 +17,18 @@ public class GraphPoet {
      */
     private Vertex graph;
     public GraphPoet(File corpus) throws IOException {
-        /* Read in the File and place into graph here */
         // Declare necessary variables
         Scanner sc = new Scanner(corpus);
-        String curr;
+        String curr; // current word
         Vertex head;
         if(sc.hasNext()){
             curr = sc.next().toLowerCase();
-            curr = curr.replaceAll("[^a-zA-Z]", "");
+            curr = curr.replaceAll("[^a-zA-Z]", ""); // eliminate non-alphabetical parts of the string
             graph = new Vertex(curr); // initialize graph
             head = graph; // set a reference to the head of the graph
             while(sc.hasNext()){
                 curr = sc.next().toLowerCase();
-                curr = curr.replaceAll("[^a-zA-Z]", "");
+                curr = curr.replaceAll("[^a-zA-Z]", ""); // eliminate non-alphabetical parts of the string
                 // check if there is any vertex with name curr
                 if(graph.contains(curr)){
                     // if so, store the reference to the vertex
@@ -69,11 +68,11 @@ public class GraphPoet {
         ListIterator<String> iterator = arr.listIterator();
         while(iterator.hasNext()){
             String curr = iterator.next();
-            curr = curr.replaceAll("[^a-zA-Z]", ""); // eliminate non-alphabetical part of the string
+            curr = curr.replaceAll("[^a-zA-Z]", ""); // eliminate non-alphabetical parts of the string
             if(iterator.hasNext()){
                 String next = iterator.next();
-                next = next.replaceAll("[^a-zA-Z]", "");
-                if(poem.equals("")){ // if this is the first iteration
+                next = next.replaceAll("[^a-zA-Z]", ""); // eliminate non-alphabetical parts of the string
+                if(poem.equals("")){    // if this is the first iteration
                     if(graph.contains(curr)){
                         Vertex v = graph.find(curr); // get the vertex of the starting vertex
                         if(v.poemAdder(next).equals("")){ // check if there exists a bridge word
@@ -85,7 +84,7 @@ public class GraphPoet {
                         poem = curr;
                     }
                     iterator.previous();
-                } else{ // if this is not the first iteration
+                } else{                 // if this is not the first iteration
                     if(graph.contains(curr)){
                         Vertex v = graph.find(curr);
                         if(v.poemAdder(next).equals("")){ // check if there exists a bridge word

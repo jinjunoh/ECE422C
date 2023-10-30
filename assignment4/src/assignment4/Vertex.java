@@ -16,10 +16,10 @@ public class Vertex{ // vertex datastructure
         // need to check if vertex already exists in the graph
         edges.put(next, edges.getOrDefault(next, 0) + 1);
     }
-    public String printName(){
+    public String printName(){ // returns the name of this instance
         return name;
     }
-    public String printEdges(){
+    public String printEdges(){ // returns all the edges of this instance with weights
         String a = "";
         for(Vertex ver : this.edges.keySet()){
             a += ver.name + edges.get(ver);
@@ -41,11 +41,11 @@ public class Vertex{ // vertex datastructure
         if(this == null) return false;
         if(num == 0){
             for (Vertex ver : this.edges.keySet()){
-                result = result || ver.poemChecker(pname,num + 1, map);
+                result = result || ver.poemChecker(pname,num + 1, map); // recursive call
             }
         }
-        if(num == 1){
-            for (Map.Entry<Vertex, Integer> e : this.edges.entrySet()){
+        if(num == 1){ // reached the first vertex
+            for (Map.Entry<Vertex, Integer> e : this.edges.entrySet()){ // check whether the children.equals(pname)
                 if(e.getKey().name.equals(pname)){
                     map.put(this.name, e.getValue());
                     return true;
@@ -60,15 +60,15 @@ public class Vertex{ // vertex datastructure
         Map<String, Integer> map = new HashMap<>();
         if(this.poemChecker(name, 0, map)){
             // if we find the equivalent vertex then return the first vertex with the largest weight
-            // utilize priorityQueue
-            PriorityQueue<String> queue = new PriorityQueue<>((a, b) -> map.get(a) - map.get(b));
+            // utilize priorityQueue: allows sorting while adding content to queue
+            PriorityQueue<String> queue = new PriorityQueue<>((a, b) -> map.get(a) - map.get(b)); // lambda function to auto sort
             queue.addAll(map.keySet());
-            return queue.poll();
+            return queue.poll(); // return the bridgeword with the largest weight
         } else{
             return "";
         }
     }
-    public boolean contains(String name){
+    public boolean contains(String name){ // checks whether the word is in the graph
         return this.containsRecursion(name, new HashSet<>()) != null;
     }
     public Vertex containsRecursion(String name, Set<Vertex> visited){
@@ -90,7 +90,7 @@ public class Vertex{ // vertex datastructure
             return null;
         }
     }
-    public Vertex find(String name){
+    public Vertex find(String name){ // returns the Vertex that corresponds with name
         return containsRecursion(name, new HashSet<>());
     }
 }

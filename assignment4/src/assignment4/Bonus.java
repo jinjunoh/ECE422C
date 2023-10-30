@@ -14,15 +14,15 @@ public class Bonus {
         String url = "https://www.ece.utexas.edu/people/faculty/edison-thomaz";
         try{
             Document doc = Jsoup.connect(url).get(); // access the document to webscrape
-            Element l = doc.select("p").get(1);
-            File t = File.createTempFile("webScrapedContent", ".txt");
-            try (PrintWriter out = new PrintWriter(t)) {
+            Element l = doc.select("p").get(1); // select the appropriate html with cssQuery
+            File t = File.createTempFile("webScrapedContent", ".txt"); // create temp file
+            try (PrintWriter out = new PrintWriter(t)) { // utilize PrintWriter to write to the temp file
                 out.println(l.text());
             }
             final GraphPoet nimoy = new GraphPoet(t);
-            t.delete();
+            t.delete(); // delete the temp file
             System.out.println(nimoy.poem(new File("bonus_input.txt")));
-        }catch (Exception ex){
+        }catch (Exception ex){ // try catch exception
             ex.printStackTrace();
         }
     }
