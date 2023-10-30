@@ -16,6 +16,8 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
         final GraphPoet nimoy = new GraphPoet(new File("corpus.txt"));
+        // /Users/jjoh/422C/assignments/assignment4/src/assignment4
         System.out.println(nimoy.poem(new File("input.txt")));
+        // /Users/jjoh/422C/assignments/assignment4/src/assignment4
     }
 }
