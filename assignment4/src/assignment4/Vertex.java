@@ -36,37 +36,42 @@ public class Vertex{ // vertex datastructure
             v.printGraph(visited);
         }
     }
-    public boolean poemChecker(String pname, int num, Map<String, Integer> map){ // checks whether pname exits in graph
-        boolean result = false;
-        if(this == null) return false;
+    public void poemChecker(String pname, int num, Map<String, Integer> map){ // checks whether pname exits in graph
+        if(this == null) return;
         if(num == 0){
             for (Vertex ver : this.edges.keySet()){
-                result = result || ver.poemChecker(pname,num + 1, map); // recursive call
+                ver.poemChecker(pname,num + 1, map); // recursive call
             }
         }
-        if(num == 1){ // reached the first vertex
+        else if(num == 1){ // reached the first vertex
             for (Map.Entry<Vertex, Integer> e : this.edges.entrySet()){ // check whether the children.equals(pname)
+                //System.out.println(this.name);
                 if(e.getKey().name.equals(pname)){
                     map.put(this.name, e.getValue());
-                    return true;
+//                    if(this.name.equals("life")){ //////////////////////
+//                        System.out.println(this.name + " " + pname);
+//                        System.out.println(map);
+//                    }
                 }
            }
-            return false;
+            return;
+        } else{
+            return;
         }
-        return result;
     }
     public String poemAdder(String name){ // returns the bridgeword given the name
         // needs to check if the second vertex from current equals name
+        //System.out.println(name);
         Map<String, Integer> map = new HashMap<>();
-        if(this.poemChecker(name, 0, map)){
-            // if we find the equivalent vertex then return the first vertex with the largest weight
-            // utilize priorityQueue: allows sorting while adding content to queue
-            PriorityQueue<String> queue = new PriorityQueue<>((a, b) -> map.get(a) - map.get(b)); // lambda function to auto sort
-            queue.addAll(map.keySet());
-            return queue.poll(); // return the bridgeword with the largest weight
-        } else{
-            return "";
-        }
+        this.poemChecker(name, 0, map);
+        // if we find the equivalent vertex then return the first vertex with the largest weight
+        // utilize priorityQueue: allows sorting while adding content to queue
+        PriorityQueue<String> queue = new PriorityQueue<>((a, b) -> map.get(b) - map.get(a)); // lambda function to auto sort
+        //System.out.println(map.keySet() + "\n");
+        queue.addAll(map.keySet());
+        //System.out.println(queue);
+        if(queue.isEmpty()) return "";
+        return queue.poll(); // return the bridgeword with the largest weight
     }
     public boolean contains(String name){ // checks whether the word is in the graph
         return this.containsRecursion(name, new HashSet<>()) != null;

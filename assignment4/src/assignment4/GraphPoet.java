@@ -73,7 +73,7 @@ public class GraphPoet {
                 String next = iterator.next();
                 next = next.replaceAll("[^a-zA-Z]", ""); // eliminate non-alphabetical parts of the string
                 if(poem.equals("")){    // if this is the first iteration
-                    if(graph.contains(curr)){
+                    if(graph != null && graph.contains(curr)){
                         Vertex v = graph.find(curr); // get the vertex of the starting vertex
                         if(v.poemAdder(next).equals("")){ // check if there exists a bridge word
                             poem = curr;
@@ -85,7 +85,7 @@ public class GraphPoet {
                     }
                     iterator.previous();
                 } else{                 // if this is not the first iteration
-                    if(graph.contains(curr)){
+                    if(graph != null && graph.contains(curr)){
                         Vertex v = graph.find(curr);
                         if(v.poemAdder(next).equals("")){ // check if there exists a bridge word
                             poem = poem + " " + curr;
