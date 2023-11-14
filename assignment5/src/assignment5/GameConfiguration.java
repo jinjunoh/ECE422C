@@ -9,7 +9,7 @@ package assignment5;
 /* EE422C Assignment #2 
  */
 public class GameConfiguration {
-	public static final int guessNumber = 1;
+	public static final int guessNumber = 5;
 	public static final String[] colors = {"B","G","O","P","R","Y"};
 	public static final int pegNumber = 4;
 	public static final String intro = "Welcome to Mastermind. Here are the rules.\n\n" +
@@ -28,6 +28,6 @@ public class GameConfiguration {
 			"Only the first letter of the color is displayed. B for Blue, R for\n" +
 			"Red, and so forth. When entering guesses you only need to enter the\n" +
 			"first character of each color as a capital letter.\n\n" +
-			"You have 12 guesses to figure out the secret code or you lose the\n" +
+			"You have " + GameConfiguration.guessNumber + " guesses to figure out the secret code or you lose the\n" +
 			"game. Are you ready to play? (Y/N): ";
 }
